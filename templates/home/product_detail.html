@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ product.title }}{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+  <div class="row">
+    <div class="col-lg-6">
+      <div id="productCarousel" class="carousel slide rounded mt-4" data-bs-ride="carousel" style="background-color: #F7F7F7;">
+        <div class="carousel-inner h-100">
+            {% for slide in slider_images %}
+                <div class="carousel-item h-100 {% if forloop.first %}active{% endif %}">
+                    <img class="d-block w-100 h-100 object-fit-contain" src="{{ slide }}" alt="Изображение товара">
+                </div>
+            {% endfor %}
+        </div>
+        <a class="carousel-control-prev" href="#productCarousel" role="button" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Предыдущий</span>
+        </a>
+        <a class="carousel-control-next" href="#productCarousel" role="button" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Следующий</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="col-lg-6">
+      <h1 class="fw-bold mt-4">{{ product.title }}</h1>
+      <p class="fs-5 text-muted">{{ product.category.title }}</p>
+      <p class="fs-4 fw-bold">Цена: {{ product.price }} руб.</p>
+      <p>{{ product.description }}</p>
+      
+      <h3 class="mt-4">Отлично подходит для:</h3>
+      {% if product.use_cases %}
+        <ul>
+          {% for line in product.use_cases.splitlines %}
+            {% if line %}
+              <li>{{ line }}</li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p>Информация отсутствует.</p>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}

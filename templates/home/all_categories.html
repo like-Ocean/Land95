@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Категории{% endblock %}
+
+{% block content %}
+
+<div class="py-5">
+    <div class="container">
+      <h2 class="fw-bold mb-4 text-start mt-4">Категории</h2>
+      <div class="row justify-content-center" id="product-cards">
+        
+        {% for category in categories %}
+          <div class="col-md-4 mb-4 product-card">
+            <div class="card border">
+              <img src="{{ category.image.url }}" class="card-img-top" alt="{{ category.title }}" style="padding: 20px;">
+              <div class="card-body text-center">
+                <h5 class="fw-bold">{{ category.title }}</h5>
+                <p class="text-muted">{{ category.description }}</p>
+                <a href="{% url 'home:category_products' category.slug %}" class="btn btn-outline-primary mt-3">Узнать больше</a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+  
+      </div>
+  
+    </div>
+  </div>
+
+{% endblock %}

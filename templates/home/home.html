@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Главная страница{% endblock %}
+
+{% block content %}
+<div class="container container-fluid py-5">
+  <div class="row align-items-center justify-content-center">
+
+    <div class="col-lg-6 text-center text-lg-start mb-4 mb-lg-0">
+      <h1 class="display-5 fw-bold">{{ homepage.main_title }}</h1>
+      <p class="fs-5 mt-4">{{ homepage.sub_title }}</p>
+      <a href="tel:{{ site_phone|urlencode }}" class="btn btn-outline-primary btn-lg rounded-pill fs-5 fw-bold mt-5" >Заказать</a>
+    </div>
+
+    <div class="col-lg-6">
+      <div
+        id="carouselExampleControls"
+        class="carousel slide rounded mt-3"
+        data-ride="carousel"
+        style="height: 400px; background-color: #F7F7F7"
+      >
+        <div class="carousel-inner h-100">
+          {% for slide in slider_images %}
+            <div class="carousel-item h-100 {% if forloop.first %}active{% endif %}">
+              <img class="d-block w-100 h-100 object-fit-contain" src="{{ slide.image.url }}" alt="Slide">
+            </div>
+          {% endfor %}
+        </div>
+        <a
+          class="carousel-control-prev"
+          href="#carouselExampleControls"
+          role="button"
+          data-bs-slide="prev"
+        >
+          <span
+            class="carousel-control-prev-icon"
+            aria-hidden="true"
+          ></span>
+          <span class="visually-hidden">Previous</span>
+        </a>
+        <a
+          class="carousel-control-next"
+          href="#carouselExampleControls"
+          role="button"
+          data-bs-slide="next"
+        >
+          <span
+            class="carousel-control-next-icon"
+            aria-hidden="true"
+          ></span>
+          <span class="visually-hidden">Next</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% include "includes/about_block.html" with title="О нас" text="Мы - семейная компания, которая с любовью и заботой подбирает каждый камень, чтобы вы могли создать свой идеальный ландшафт. Наши камни приходят прямо из природы в ваш сад, добавляя красоту и гармонию"%}
+
+<div class="py-5">
+  <div class="container">
+    <h2 class="fw-bold mb-4 text-start">Почему выбирают нас?</h2>
+    <div class="row justify-content-center"> 
+      {% for card in why_choose_cards %}
+        <div class="col-md-4">
+          <div class="card border-0 p-3 text-center">
+            <img src="{{ card.image.url }}" class="card-img-top" alt="{{ card.title }}">
+            <div class="card-body">
+              <h5 class="fw-bold mt-3">{{ card.title }}</h5>
+              <p class="text-muted mt-3">{{ card.text }}</p>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% include "includes/about_block.html" with title="Наша продукция: Камни для каждой идеи" text="Мы предлагаем широкий ассортимент ландшафтных камней, чтобы вы могли найти именно то, что подходит для вашего проекта. От элегантных гальки до монументальных валунов - каждый камень выбран с заботой и вниманием к деталям."%}
+
+<div class="py-5">
+  <div class="container">
+    <h2 class="fw-bold mb-4 text-start">Выбирайте камень под свои нужды</h2>
+    <div class="row justify-content-center" id="product-cards">
+      
+      {% for category in featured_categories %}
+        <div class="col-md-4 mb-4 product-card">
+          <div class="card border">
+            <img src="{{ category.image.url }}" class="card-img-top" alt="{{ category.title }}" style="padding: 20px;">
+            <div class="card-body text-center">
+              <h5 class="fw-bold">{{ category.title }}</h5>
+              <p class="text-muted">{{ category.description }}</p>
+              <a href="{% url 'home:all_categories' %}" class="btn btn-outline-primary mt-3">Узнать больше</a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+
+    </div>
+
+    <div class="text-center">
+      <a href="{% url 'home:all_categories' %}" class="btn btn-primary rounded-pill" id="show-more-btn">Показать больше</a>
+    </div>
+
+  </div>
+</div>
+
+{% include "includes/about_block.html" with title="Свяжитесь с нами: Мы всегда на связи" text="Если у вас возникли вопросы или вы хотите сделать заказ, наша команда всегда готова помочь. Заполните форму или позвоните нам, и мы обязательно свяжемся с вами."%}
+
+
+{% endblock %}
+
+{% comment %} 
+  доделать футер.
+  МБ сделать прайс лист. Разобраться где нужно хранить django secret key и всё такое.
+  сделать мини лого для бразуера
+{% endcomment %}

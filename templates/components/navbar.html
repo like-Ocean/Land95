@@ -1,0 +1,62 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3 fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'home:home' %}">Land95</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="gap: 30px">
+          <li class="nav-item">
+            <a
+                class="nav-link {% if request.path == '/' %}active{% endif %}"
+                style="color: #00023F"
+                aria-current="page"
+                href="{% url 'home:home' %}"
+            >
+                Главная
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if request.path == '/categories/' %}active{% endif %}"
+                style="color: #00023F;"
+                href="{% url 'home:all_categories' %}"
+            >
+              Категории
+            </a>
+          </li>
+        </ul>
+
+        <div class="d-flex align-items-center ms-auto gap-3">
+          <div class="d-flex align-items-center">
+            <i class="bi bi-telephone me-2"></i>
+            <a
+              href="tel:{{ site_phone|urlencode }}"
+              style="color: #00023F !important;"
+              class="text-dark text-decoration-none"
+            >
+              {{ site_phone }}
+            </a>
+          </div>
+          <div class="d-flex align-items-center">
+            <i class="bi bi-envelope me-2"></i>
+            <a
+              href="mailto:{{ site_email }}"
+              class="text-dark text-decoration-none"
+              style="color: #00023F !important;"
+            >
+              {{ site_email }}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+</nav>
