@@ -3,6 +3,10 @@
 
 {% block title %}{{ product.title }}{% endblock %}
 
+{% block meta_description %}
+  {{ product.title }}: {{ product.description|truncatechars:160 }}
+{% endblock %}
+
 {% block content %}
 <div class="container py-5">
   <div class="row">

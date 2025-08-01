@@ -3,6 +3,10 @@
 
 {% block title %}{{ category.title }}{% endblock %}
 
+{% block meta_description %}
+  Категория “{{ category.title }}”: {{ category.description|default:"Лучшие ландшафтные камни этой категории." }}
+{% endblock %}
+
 {% block content %}
 <div class="py-5">
     <div class="container">
@@ -17,7 +21,7 @@
               <div class="card-body text-center">
                 <h5 class="fw-bold">{{ product.title }}</h5>
                 <p class="card-text">{{ product.description|truncatewords:10 }}</p>
-                <a href="{% url 'home:product_detail' product.id %}" class="btn btn-outline-primary">Подробнее</a>
+                <a href="{% url 'home:product_detail' product.slug %}" class="btn btn-outline-primary">Подробнее</a>
               </div>
             </div>
           </div>

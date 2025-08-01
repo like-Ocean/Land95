@@ -33,8 +33,8 @@ def category_products(request, slug):
     return render(request, "home/category_products.html", context)
 
 
-def product_detail(request, product_id):
-    product = get_object_or_404(Product, id=product_id)
+def product_detail(request, slug):
+    product = get_object_or_404(Product, slug=slug)
     
     slider_images = []
     if product.image:

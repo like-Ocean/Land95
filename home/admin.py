@@ -28,7 +28,8 @@ class ProductCategoryAdmin(admin.ModelAdmin):
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     list_display = ("title", "category", "price")
-    fields = ("category", "title", "description", "image", "price", "use_cases")
+    fields = ("category", "title", "slug", "description", "image", "price", "use_cases")
+    prepopulated_fields = {"slug": ("title",)}
     
 
 @admin.register(ProductImage)
