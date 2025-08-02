@@ -2,6 +2,8 @@ FROM python:3.10-slim
 
 WORKDIR /app
 
+COPY . .
+
 ENV PYTHONUNBUFFERED=1 \
     DEBIAN_FRONTEND=noninteractive
 
@@ -12,14 +14,9 @@ RUN apt-get update \
       gcc \
  && rm -rf /var/lib/apt/lists/*
 
-COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY . .
-
 RUN python manage.py collectstatic --noinput
-
-VOLUME /app/static /app/media
 
 EXPOSE 8000
 
