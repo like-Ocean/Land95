@@ -17,6 +17,8 @@
             <div class="card border">
               {% if product.image %}
                 <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.title }}" style="padding: 20px;">
+              {% else %}
+                <img src="https://placehold.co/600x400" class="card-img-top" alt="Нет изображения" style="padding: 20px;">
               {% endif %}
               <div class="card-body text-center">
                 <h5 class="fw-bold">{{ product.title }}</h5>
