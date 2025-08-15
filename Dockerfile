@@ -16,7 +16,7 @@ RUN apt-get update \
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-RUN python manage.py collectstatic --noinput
+RUN python manage.py collectstatic --noinput --clear
 
 EXPOSE 8000
 
