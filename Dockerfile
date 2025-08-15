@@ -16,8 +16,8 @@ RUN apt-get update \
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-RUN python manage.py collectstatic --noinput --clear
+
 
 EXPOSE 8000
 
-CMD ["gunicorn", "bestStone.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "3"]
+CMD ["sh", "-c", "python manage.py collectstatic --noinput && gunicorn bestStone.wsgi:application --bind 0.0.0.0:8000 --workers 3"]
