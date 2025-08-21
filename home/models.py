@@ -118,5 +118,64 @@ class ProductImage(models.Model):
         verbose_name_plural = "Изображения товара"
 
 
+class GalleryImage(models.Model):
+    image = models.ImageField(upload_to='articles/gallery/', verbose_name='Изображение')
+    alt_text = models.CharField(max_length=255, blank=True, null=True, verbose_name='Альтернативный текст')
+    
+    class Meta:
+        verbose_name = 'Изображение галереи для статьи'
+        verbose_name_plural = 'Изображения галереи для статей'
+
+    def __str__(self):
+        return self.alt_text if self.alt_text else f"Изображение {self.id}"
 
 
+class Article(models.Model):
+    CATEGORY_CHOICES = [
+        ('advice', 'Советы и инструкции'),
+        ('ideas', 'Идеи и вдохновение'),
+        ('types', 'Виды камней'),
+        ('projects', 'Проекты и примеры работ'),
+        ('care', 'Уход и эксплуатация'),
+        ('mistakes', 'Ошибки и лайфхаки'),
+        ('news', 'Новости и тренды'),
+    ]
+
+    title = models.CharField('Заголовок', max_length=255)
+    seo_title = models.CharField('SEO заголовок', max_length=255, blank=True, null=True)
+    slug = models.SlugField('URL статьи', unique=True, blank=True)
+    meta_description = models.TextField('Мета-описание', blank=True, null=True)
+    body = models.TextField('Содержимое статьи')
+    category = models.CharField('Категория', max_length=50, choices=CATEGORY_CHOICES)
+    hero_image = models.ImageField('Главное изображение', upload_to='articles/', null=True, blank=True)
+    gallery_images = models.ManyToManyField(GalleryImage, blank=True)
+    preview_image = models.FileField(
+        verbose_name='Превью',
+        upload_to='articles/previews/',
+        validators=[validate_image_or_svg],
+        null=True,
+        blank=True
+    )
+    publish_date = models.DateField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-publish_date']
+        verbose_name = 'Статья'
+        verbose_name_plural = 'Статьи'
+
+    def __str__(self):
+        return self.title
+
+    def has_gallery(self):
+        return self.gallery_images.exists()
+
+    def save(self, *args, **kwargs):
+        if not self.slug or self.slug.strip() == "":
+            base = slugify(self.title)[:240]
+            slug = base
+            i = 1
+            while Product.objects.filter(slug=slug).exclude(pk=self.pk).exists():
+                slug = f"{base}-{i}"
+                i += 1
+            self.slug = slug
+        super().save(*args, **kwargs)

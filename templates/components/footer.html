@@ -1,9 +1,9 @@
-<footer class="bg-light text-center py-4 mt-5">
+<footer class="text-center py-4 mt-5 text-light" style="background-color: #434469">
   <div class="container">
     <div class="row gy-3">
 
       <div class="col-md-4 text-md-start">
-        <a href="{% url 'home:home' %}" class="text-decoration-none text-dark">
+        <a href="{% url 'home:home' %}" class="text-decoration-none text-light">
           <strong>Land95</strong>
         </a>
       </div>
@@ -11,29 +11,29 @@
       <div class="col-md-4">
         <ul class="list-unstyled d-flex justify-content-center mb-0">
           <li class="mx-2">
-            <a href="{% url 'home:home' %}" class="text-muted text-decoration-none">Главная</a>
+            <a href="{% url 'home:home' %}" class="text-light text-decoration-none">Главная</a>
           </li>
           <li class="mx-2">
-            <a href="{% url 'home:all_categories' %}" class="text-muted text-decoration-none">Категории</a>
+            <a href="{% url 'home:all_categories' %}" class="text-light text-decoration-none">Категории</a>
           </li>
         </ul>
       </div>
 
       <div class="col-md-4 text-md-end">
-        <a href="tel:{{ site_phone|urlencode }}" class="text-muted text-decoration-none d-block mb-1">
+        <a href="tel:{{ site_phone|urlencode }}" class="text-light text-decoration-none d-block mb-1">
           <i class="bi bi-telephone me-1"></i>{{ site_phone }}
         </a>
-        <a href="mailto:{{ site_email }}" class="text-muted text-decoration-none">
+        <a href="mailto:{{ site_email }}" class="text-light text-decoration-none">
           <i class="bi bi-envelope me-1"></i>{{ site_email }}
         </a>
       </div>
     </div>
 
-    <hr class="my-3">
+    <hr class="my-3 border-light">
 
     <div class="row">
       <div class="col-12">
-        <p class="small mb-0 text-muted">
+        <p class="small mb-0 text-light">
           Изображения предоставлены <a href="https://www.freepik.com" target="_blank" class="text-decoration-none">Freepik</a>
         </p>
       </div>

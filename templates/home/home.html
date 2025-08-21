@@ -86,7 +86,7 @@
       
       {% for category in featured_categories %}
         <div class="col-md-4 mb-4 product-card">
-          <div class="card border">
+          <div class="card border-black">
             {% if category.image %}
               <img src="{{ category.image.url }}" class="card-img-top" alt="{{ category.title }}" style="padding: 20px;">
             {% else %}
@@ -111,6 +111,24 @@
 </div>
 
 {% include "includes/about_block.html" with title="Свяжитесь с нами: Мы всегда на связи" text="Если у вас возникли вопросы или вы хотите сделать заказ, наша команда всегда готова помочь. Позвоните нам, мы всегда отвечаем!"%}
+
+<div class="py-5">
+  <div class="container">
+    <h2 class="fw-bold mb-4 text-start">Ищете идеи для ландшафтного дизайна?</h2>
+    <div>
+      <p class="fs-5 mb-3">
+        <a href="{% url 'home:blog_list' %}" class="blog-link fw-bold">Читайте наш блог!</a>
+        Здесь вы найдете полезные советы по выбору камней, оригинальные дизайнерские решения и 
+        готовые примеры оформления участка. Всё, чтобы ваш сад стал идеальным!
+        <br>
+        Также рекомендуем ознакомиться с этой статьей о том,
+        <a href="{% url 'home:blog_list'%}" class="blog-link fw-bold">
+          как правильно выбрать камни для ландшафтного дизайна
+        </a>.
+      </p>
+    </div>
+  </div>
+</div>
 
 
 {% endblock %}

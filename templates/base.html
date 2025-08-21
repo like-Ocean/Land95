@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>{% block title %}{{ page_title|default:"Land95 — ландшафтные камни напрямую от производителя" }}{% endblock %}</title>
+    <title>{% block title %}{{ page_title|default:"Купить ландшафтные камни с доставкой по РФ — Land95" }}{% endblock %}</title>
 
     <meta 
         name="description"
@@ -19,7 +19,9 @@
     <meta name="keywords" content="ландшафтные камни, галька, речной булыжник, валуны, гравий, поставка ландшафтных материалов, камни для сада, натуральные камни, ландшафтный дизайн, купить камни">
     <link rel="canonical" href="{{ request.build_absolute_uri }}">
     
-    <meta property="og:title" content="{{ page_title|default:'Land95 — ландшафтные камни напрямую от производителя' }}">
+    <meta property="og:locale" content="ru_RU">
+    <meta property="og:site_name" content="Land95">
+    <meta property="og:title" content="{{ page_title|default:'Купить ландшафтные камни с доставкой по РФ — Land95' }}">
     <meta property="og:description" content="{{ page_description|default:'Прямые поставки ландшафтных камней без посредников. Галька, речной булыжник, валуны, гравий. Доставка по РФ, консультация экспертов, честные цены. Купить образцы!' }}">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ request.build_absolute_uri }}">
@@ -33,17 +35,18 @@
     <style>
         body {
             font-family: "Montserrat", sans-serif;
+            color: #00023F;
         }
         .nav-link.active { font-weight: 600; }
-        .order-form-container {
-            max-width: 500px;
-            border: 2px solid #00023F;
-            border-radius: 10px;
-            margin: 0 auto;
-            padding: 1vw 5vw;
+
+        .blog-link {
+            color: #00023F;
+            text-decoration: none;
+            transition: color 0.3s ease;
         }
-        .order-form-container div{
-            margin: 20px 0;
+
+        .blog-link:hover {
+            color: #9FA2FE;
         }
     </style>
 </head>

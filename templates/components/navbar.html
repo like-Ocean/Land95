@@ -33,6 +33,14 @@
               Категории
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link {% if request.path == '/bloglist/' %}active{% endif %}"
+                style="color: #00023F;"
+                href="{% url 'home:blog_list' %}"
+            >
+              Блог
+            </a>
+          </li>
         </ul>
 
         <div class="d-flex align-items-center ms-auto gap-3">

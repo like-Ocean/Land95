@@ -1,8 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.core.mail import send_mail
 from django.conf import settings
-from django.contrib import messages
-from .models import HomePageContent, SliderImage, WhyChooseCard, ProductCategory, Product
+from .models import HomePageContent, SliderImage, WhyChooseCard, ProductCategory, Product, Article
 
 def home(request):
     homepage = HomePageContent.objects.first()
@@ -21,6 +19,22 @@ def home(request):
 def all_categories(request):
     categories = ProductCategory.objects.all()
     return render(request, "home/all_categories.html", {"categories": categories})
+
+
+def blog_list(request):
+    articles = Article.objects.all()
+    return render(request, 'home/blog_list.html', {'articles': articles})
+
+
+def blog_item(request, slug):
+    article = get_object_or_404(Article, slug=slug)
+    related_articles = Article.objects.all()[:3]
+
+    context = {
+        "article": article,
+        "related_articles": related_articles,
+    }
+    return render(request, "home/blog_item.html", context)
 
 
 def category_products(request, slug):

@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}{{ category.title }} для сада и ландшафта — купить в Land95{% endblock %}
+{% block title %}{{ category.title }} купить для ландшафта и сада на Land95{% endblock %}
 
 {% block meta_description %}
-  Категория “{{ category.title }}”: {{ category.description|default:"Лучшие ландшафтные камни этой категории. Купите прямо сейчас!" }}
+  Категория “{{ category.title }}”: Прямые поставки от производителя, доставка по РФ. Выбирайте лучшие ландшафтные камни этой категории. Купите прямо сейчас!
 {% endblock %}
 
 {% block content %}
@@ -14,7 +14,7 @@
       <div class="row">
         {% for product in products %}
           <div class="col-md-4 mb-4 product-card">
-            <div class="card border">
+            <div class="card border-black">
               {% if product.image %}
                 <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.title }}" style="padding: 20px;">
               {% else %}

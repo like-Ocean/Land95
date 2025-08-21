@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Блог о ландшафтном дизайне: советы, идеи и примеры — Land95{% endblock %}
+
+{% block meta_description %}
+  Читайте блог Land95: полезные советы по выбору камней, идеи ландшафтного дизайна, инструкции и примеры оформления участка с фото.
+{% endblock %}
+
+{% block content %}
+
+<div class="py-5">
+  {% include "includes/about_block.html" with title="Советы и идеи по ландшафтному дизайну" text="В нашем блоге вы найдете полезные статьи о ландшафтных камнях, их видах, свойствах и способах применения в саду и на участке. Мы рассказываем, как выбрать глыбы, галтовку, декоративный щебень и другие материалы для вашего проекта. Каждая статья содержит примеры использования, фотографии готовых работ и советы от наших экспертов. Блог помогает не только выбрать камни, но и вдохновляет на создание красивого и гармоничного ландшафта." %}
+  
+  <div class="container">
+    <h2 class="fw-bold mb-4 text-start mt-4">Наши статьи</h2>
+    <div class="row" id="blog-cards">
+      {% for article in articles %}
+        <div class="col-md-4 mb-4 product-card">
+          <a href="{% url 'home:blog_item' article.slug %}" class="card border-black text-decoration-none d-block h-100">
+            {% if article.preview_image %}
+              <img src="{{ article.preview_image.url }}" class="card-img-top" alt="{{ article.title }}" style="padding: 20px;">
+            {% else %}
+              <img src="https://placehold.co/600x400" class="card-img-top" alt="Нет изображения" style="padding: 20px;">
+            {% endif %}
+            <div class="card-body text-center">
+              <h5 class="fw-bold text-dark">{{ article.title }}</h5>
+              <p class="text-muted">{{ article.meta_description|truncatewords:20 }}</p>
+            </div>
+          </a>
+        </div>
+      {% empty %}
+        <p class="text-center">Пока нет статей.</p>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% include "includes/about_block.html" with text="Наш блог — это источник идей и знаний для всех, кто хочет создавать красивые ландшафтные композиции. Узнайте, как правильно комбинировать камни, выбрать подходящие размеры и цвета, и вдохновляйтесь реальными проектами наших клиентов." %}
+
+{% endblock %}

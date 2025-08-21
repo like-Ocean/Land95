@@ -5,7 +5,7 @@
 
 {% block meta_description %}
   Просмотрите все наши ландшафтные категории: галька, речной булыжник, валуны, гравий и многое другое.
-  Низкие цены и быстрая доставка, индивидуальный подход к каждому клиенту. Вы не останетесь разочарованными!
+  Низкие цены и быстрая доставка, индивидуальный подход к каждому клиенту. Выбирайте и заказывайте!
 {% endblock %}
 
 {% block content %}
@@ -17,7 +17,7 @@
         
         {% for category in categories %}
           <div class="col-md-4 mb-4 product-card">
-            <div class="card border">
+            <div class="card border-black">
               {% if category.image %}
                 <img src="{{ category.image.url }}" class="card-img-top" alt="{{ category.title }}" style="padding: 20px;">
               {% else %}

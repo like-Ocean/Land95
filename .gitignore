@@ -43,6 +43,12 @@ media/
 staticfiles/
 # если собираете collectstatic в директорию static/
 images/
+articles/
+previews/
+articles/previews
+gallery/
+articles/gallery/
+
 
 # Pytest
 .cache/

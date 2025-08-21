@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import HomePageContent, SliderImage, WhyChooseCard, ProductCategory, Product, ProductImage
+from .models import HomePageContent, SliderImage, WhyChooseCard,\
+ ProductCategory, Product, ProductImage, Article, GalleryImage
 
 @admin.register(HomePageContent)
 class HomePageContentAdmin(admin.ModelAdmin):
@@ -36,3 +37,24 @@ class ProductAdmin(admin.ModelAdmin):
 class ProductImageAdmin(admin.ModelAdmin):
     list_display = ("product", "image")
 
+
+@admin.register(GalleryImage)
+class GalleryImageAdmin(admin.ModelAdmin):
+    list_display = ("alt_text", "image")
+    search_fields = ("alt_text",)
+
+
+@admin.register(Article)
+class ArticleAdmin(admin.ModelAdmin):
+    list_display = ("title", "category", "publish_date", "slug")
+    list_filter = ("category", "publish_date")
+    search_fields = ("title", "body")
+    filter_horizontal = ("gallery_images",)
+    fieldsets = (
+        (None, {
+            "fields": ("title", "slug", "seo_title", "meta_description", "body", "category")
+        }),
+        ("Изображения", {
+            "fields": ("hero_image", "preview_image", "gallery_images")
+        }),
+    )
