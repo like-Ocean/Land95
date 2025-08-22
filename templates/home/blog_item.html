@@ -20,7 +20,9 @@
 
 
   {% if article.hero_image %}
-    <img src="{{ article.hero_image.url }}" alt="{{ article.title }}" class="img-fluid rounded shadow">
+    <div class="text-center my-4">
+      <img src="{{ article.hero_image.url }}" alt="{{ article.title }}" class="img-fluid rounded shadow">
+    </div>
   {% endif %}
 
 
